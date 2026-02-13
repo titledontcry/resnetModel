@@ -1,0 +1,1583 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Valentine's Day Na My BB</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Press Start 2P', 'Chakra Petch', cursive;
+        background: #1a0a2e;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+        image-rendering: pixelated;
+        position: relative;
+      }
+
+      /* ===== Pixel Stars Background ===== */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ===== Pixel Hearts Floating ===== */
+      .pixel-heart {
+        position: fixed;
+        width: 12px;
+        height: 12px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+        animation: floatHeart 6s linear infinite;
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(100vh) scale(0.5);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.8;
+        }
+        90% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(-100px) scale(1.2);
+          opacity: 0;
+        }
+      }
+
+      /* ===== Title ===== */
+      .title {
+        margin-top: 40px;
+        color: #ff6b9d;
+        font-size: 14px;
+        text-shadow:
+          3px 3px 0px #cc0044,
+          0 0 20px rgba(255, 107, 157, 0.5);
+        z-index: 10;
+        animation: titlePulse 2s ease-in-out infinite;
+        text-align: center;
+        line-height: 1.8;
+        padding: 0 20px;
+      }
+
+      @keyframes titlePulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .subtitle {
+        color: #ffb3d9;
+        font-size: 9px;
+        margin-top: 12px;
+        z-index: 10;
+        animation: blink 1.5s step-end infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* ===== Pixel Flower ===== */
+      .flower-container {
+        margin-top: 30px;
+        cursor: pointer;
+        z-index: 10;
+        transition: transform 0.2s;
+        position: relative;
+      }
+
+      .flower-container:hover {
+        transform: scale(1.1);
+      }
+
+      .flower-container:active {
+        transform: scale(0.95);
+      }
+
+      #pixelFlower {
+        image-rendering: pixelated;
+        filter: drop-shadow(0 0 15px rgba(255, 100, 150, 0.6));
+      }
+
+      .click-hint {
+        color: #ffb3d9;
+        font-size: 8px;
+        margin-top: 10px;
+        z-index: 10;
+        animation: bounce 1s ease infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* ===== Dodge Button ===== */
+      .dodge-phase {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .dodge-btn {
+        font-family: 'Press Start 2P', 'Chakra Petch', cursive;
+        font-size: 12px;
+        padding: 18px 30px;
+        background: #ff3370;
+        color: white;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        z-index: 51;
+        text-shadow: 2px 2px 0px #990033;
+        box-shadow:
+          6px 6px 0px #990033,
+          inset -3px -3px 0px rgba(0, 0, 0, 0.2),
+          inset 3px 3px 0px rgba(255, 255, 255, 0.2);
+        transition:
+          left 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          top 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        white-space: nowrap;
+        line-height: 1.8;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .dodge-btn:hover {
+        background: #ff4d85;
+      }
+
+      .dodge-btn.caught {
+        animation: caughtPulse 0.5s ease 3;
+        background: #ff6b9d;
+      }
+
+      @keyframes caughtPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+      }
+
+      .dodge-message {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ffb3d9;
+        font-family: 'Press Start 2P', 'Chakra Petch', cursive;
+        font-size: 14px;
+        z-index: 52;
+        text-shadow: 2px 2px 0px #660033;
+        text-align: center;
+        line-height: 1.8;
+        animation: fadeIn 0.3s ease;
+        pointer-events: none;
+      }
+
+
+
+      /* Hide flower initially */
+      .flower-phase-hidden {
+        display: none;
+      }
+
+      .flower-phase-visible {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: fadeIn 0.8s ease;
+      }
+
+      /* ===== Photo Slideshow Overlay ===== */
+      .slideshow-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 5, 30, 0.95);
+        z-index: 100;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .slideshow-overlay.active {
+        display: flex;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .photo-frame {
+        position: relative;
+        border: 6px solid #ff6b9d;
+        border-image: repeating-linear-gradient(
+            90deg,
+            #ff6b9d 0px,
+            #ff6b9d 4px,
+            #ff3370 4px,
+            #ff3370 8px,
+            #ff6b9d 8px,
+            #ff6b9d 12px
+          )
+          6;
+        padding: 8px;
+        background: #2a1040;
+        max-width: 85vw;
+        max-height: 70vh;
+        animation: photoAppear 0.4s ease;
+        display: inline-block;
+      }
+
+      @keyframes photoAppear {
+        from {
+          transform: scale(0.5) rotate(-5deg);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1) rotate(0deg);
+          opacity: 1;
+        }
+      }
+
+      .photo-frame img {
+        max-width: 100%;
+        max-height: 65vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        image-rendering: auto;
+        display: block;
+        border-radius: 4px;
+      }
+
+      .photo-counter {
+        color: #ffb3d9;
+        font-size: 10px;
+        margin-top: 15px;
+        text-shadow: 2px 2px 0px #660033;
+      }
+
+      .photo-caption {
+        color: #ff9ec7;
+        font-size: 8px;
+        margin-top: 10px;
+        max-width: 300px;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .slide-controls {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .pixel-btn {
+        font-family: 'Press Start 2P', 'Chakra Petch', cursive;
+        font-size: 10px;
+        padding: 12px 20px;
+        background: #ff3370;
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-shadow: 2px 2px 0px #990033;
+        box-shadow:
+          4px 4px 0px #990033,
+          inset -2px -2px 0px rgba(0, 0, 0, 0.2),
+          inset 2px 2px 0px rgba(255, 255, 255, 0.2);
+        transition: all 0.1s;
+        position: relative;
+      }
+
+      .pixel-btn:hover {
+        background: #ff4d85;
+        transform: translate(-1px, -1px);
+        box-shadow:
+          5px 5px 0px #990033,
+          inset -2px -2px 0px rgba(0, 0, 0, 0.2),
+          inset 2px 2px 0px rgba(255, 255, 255, 0.2);
+      }
+
+      .pixel-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow:
+          2px 2px 0px #990033,
+          inset -2px -2px 0px rgba(0, 0, 0, 0.2),
+          inset 2px 2px 0px rgba(255, 255, 255, 0.2);
+      }
+
+      /* ===== Mail / Love Letter Popup ===== */
+      .mail-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 5, 30, 0.97);
+        z-index: 200;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .mail-overlay.active {
+        display: flex;
+      }
+
+      .mail-btn {
+        cursor: pointer;
+        transition: transform 0.2s;
+        filter: drop-shadow(0 0 15px rgba(255, 100, 150, 0.5));
+      }
+
+      .mail-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .mail-btn:active {
+        transform: scale(0.95);
+      }
+
+      .mail-label {
+        color: #ffb3d9;
+        font-size: 10px;
+        margin-top: 15px;
+        text-shadow: 2px 2px 0px #660033;
+        animation: bounce 1s ease infinite;
+      }
+
+      /* ===== Celebration Overlay ===== */
+      .celebrate-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 5, 30, 0.97);
+        z-index: 55;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .celebrate-overlay.active {
+        display: flex;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .celebrate-title {
+        color: #ffd700;
+        font-size: 20px;
+        font-weight: 700;
+        text-shadow:
+          3px 3px 0px #cc8800,
+          0 0 20px rgba(255, 215, 0, 0.5);
+        text-align: center;
+        line-height: 1.8;
+        animation: titlePulse 1.5s ease-in-out infinite;
+      }
+
+      .celebrate-text {
+        color: #ffb3d9;
+        font-size: 16px;
+        text-align: center;
+        line-height: 1.8;
+        text-shadow: 2px 2px 0px #660033;
+        max-width: 400px;
+        padding: 0 20px;
+      }
+
+      .celebrate-emoji {
+        font-size: 50px;
+        animation: titlePulse 1s ease-in-out infinite;
+      }
+
+      .confetti {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        pointer-events: none;
+        z-index: 56;
+        animation: confettiFall 3s linear forwards;
+      }
+
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(-20px) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* ===== Love Letter Content ===== */
+      .letter-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 5, 30, 0.97);
+        z-index: 300;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .letter-overlay.active {
+        display: flex;
+        animation: fadeIn 0.6s ease;
+      }
+
+      .letter-paper {
+        background: linear-gradient(to bottom, #fff5f7, #ffe0e8);
+        border: 4px solid #cc3366;
+        padding: 30px 25px;
+        max-width: 360px;
+        width: 90vw;
+        max-height: 70vh;
+        overflow-y: auto;
+        box-shadow: 8px 8px 0px #660033;
+        position: relative;
+        animation: letterUnfold 0.6s ease;
+      }
+
+      @keyframes letterUnfold {
+        from {
+          transform: scaleY(0);
+          opacity: 0;
+        }
+        to {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+      }
+
+      .letter-paper::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .letter-paper::-webkit-scrollbar-track {
+        background: #ffe0e8;
+      }
+
+      .letter-paper::-webkit-scrollbar-thumb {
+        background: #ff6b9d;
+        border: 2px solid #cc3366;
+      }
+
+      .letter-header {
+        color: #cc3366;
+        font-size: 11px;
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 0px rgba(204, 51, 102, 0.3);
+      }
+
+      .letter-body {
+        color: #8b3a62;
+        font-size: 12px;
+        line-height: 2.2;
+        white-space: pre-line;
+        text-align: left;
+      }
+
+      .letter-signature {
+        color: #cc3366;
+        font-size: 9px;
+        text-align: right;
+        margin-top: 25px;
+      }
+
+      .letter-deco {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 15px;
+      }
+
+      .close-letter-btn {
+        margin-top: 20px;
+      }
+
+      /* ===== Pixel Particle burst ===== */
+      .pixel-burst {
+        position: fixed;
+        pointer-events: none;
+        z-index: 999;
+      }
+
+      .pixel-particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        animation: burst 0.8s ease-out forwards;
+      }
+
+      @keyframes burst {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--tx), var(--ty)) scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* ===== Ground / Grass ===== */
+      .ground {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        z-index: 5;
+        pointer-events: none;
+      }
+
+      /* ===== Responsive ===== */
+
+      /* Tablets and smaller */
+      @media (max-width: 768px) {
+        .title {
+          font-size: 12px;
+          padding: 0 15px;
+        }
+
+        .subtitle {
+          font-size: 8px;
+        }
+
+        .dodge-btn {
+          font-size: 10px;
+          padding: 15px 22px;
+        }
+
+        .dodge-message {
+          font-size: 8px;
+          bottom: 60px;
+          padding: 0 15px;
+        }
+
+
+
+        .celebrate-title {
+          font-size: 16px;
+        }
+
+        .celebrate-text {
+          font-size: 10px;
+        }
+
+        .celebrate-emoji {
+          font-size: 40px;
+        }
+
+        .letter-paper {
+          padding: 20px 15px;
+          max-width: 92vw;
+        }
+
+        .letter-header {
+          font-size: 10px;
+        }
+
+        .letter-body {
+          font-size: 7px;
+          line-height: 2;
+        }
+
+        .pixel-btn {
+          font-size: 9px;
+          padding: 10px 16px;
+        }
+      }
+
+      /* Small phones */
+      @media (max-width: 400px) {
+        .title {
+          font-size: 10px;
+          margin-top: 25px;
+          padding: 0 10px;
+        }
+
+        .subtitle {
+          font-size: 7px;
+        }
+
+        .dodge-btn {
+          font-size: 8px;
+          padding: 12px 18px;
+          max-width: 85vw;
+          white-space: normal;
+          text-align: center;
+        }
+
+        .dodge-message {
+          font-size: 7px;
+          bottom: 40px;
+        }
+
+
+
+        .celebrate-title {
+          font-size: 14px;
+        }
+
+        .celebrate-text {
+          font-size: 9px;
+          padding: 0 15px;
+        }
+
+        .celebrate-emoji {
+          font-size: 32px;
+        }
+
+        .celebrate-overlay .photo-frame img {
+          max-height: 25vh;
+        }
+
+        .letter-paper {
+          padding: 15px 12px;
+          max-height: 65vh;
+        }
+
+        .letter-header {
+          font-size: 9px;
+          margin-bottom: 12px;
+        }
+
+        .letter-body {
+          font-size: 6px;
+          line-height: 2;
+        }
+
+        .letter-signature {
+          font-size: 7px;
+        }
+
+        .photo-frame img {
+          max-height: 50vh;
+        }
+
+        .photo-caption {
+          font-size: 7px;
+        }
+
+        .pixel-btn {
+          font-size: 8px;
+          padding: 8px 14px;
+        }
+
+        .mail-label {
+          font-size: 8px;
+        }
+
+        .click-hint {
+          font-size: 8px;
+        }
+      }
+
+      /* Fix for very small height screens (landscape phone) */
+      @media (max-height: 500px) {
+        .celebrate-overlay .photo-frame img {
+          max-height: 20vh;
+        }
+
+        .letter-paper {
+          max-height: 60vh;
+          padding: 10px;
+        }
+
+        .photo-frame img {
+          max-height: 40vh;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Stars Canvas -->
+    <canvas class="stars" id="starsCanvas"></canvas>
+
+    <!-- Floating pixel hearts -->
+    <div id="floatingHearts"></div>
+
+    <!-- Ground -->
+    <canvas class="ground" id="groundCanvas"></canvas>
+
+    <!-- ===== DODGE BUTTON PHASE ===== -->
+    <div class="dodge-phase" id="dodgePhase">
+
+      <button
+        class="dodge-btn"
+        id="dodgeBtn"
+        onmouseenter="dodgeButton()"
+        ontouchstart="dodgeButton()"
+        onclick="onDodgeBtnClick()"
+      >
+        PRESS ME IF YOU CAN
+      </button>
+      <div class="dodge-message" id="dodgeMessage"></div>
+    </div>
+
+    <!-- ===== CELEBRATION OVERLAY ===== -->
+    <div class="celebrate-overlay" id="celebrateOverlay">
+      <p class="celebrate-title">CONGRATULATIONS!</p>
+      <p class="celebrate-text">เก่งมาก โบกี้ภูมิใจในตัวมามี๊ที่สุด</p>
+      <div class="photo-frame" style="animation: none; margin-top: 10px">
+        <img
+          src="/Users/attachatchannakorn/resNet-50/pics/good.JPG"
+          alt="celebrate"
+          style="
+            max-width: 100%;
+            max-height: 35vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+          "
+        />
+      </div>
+      <button
+        class="pixel-btn"
+        onclick="closeCelebration()"
+        style="margin-top: 15px"
+      >
+        CONTINUE ▶
+      </button>
+    </div>
+
+    <!-- ===== FLOWER PHASE (hidden initially) ===== -->
+    <div class="flower-phase-hidden" id="flowerPhase">
+      <!-- Title -->
+      <h1 class="title"></h1>
+      <p class="subtitle">▼ PRESS THE FLOWER ▼</p>
+
+      <!-- Pixel Flower (Canvas-drawn) -->
+      <div class="flower-container" onclick="onFlowerClick(event)">
+        <canvas id="pixelFlower" width="160" height="200"></canvas>
+      </div>
+      <p class="click-hint">♥ CLICK ME ♥</p>
+    </div>
+
+    <!-- Photo Slideshow Overlay -->
+    <div class="slideshow-overlay" id="slideshowOverlay">
+      <div class="photo-frame" id="photoFrame">
+        <img id="slideImage" src="" alt="Our Memory" />
+      </div>
+      <p class="photo-counter" id="photoCounter"></p>
+      <p class="photo-caption" id="photoCaption"></p>
+      <div class="slide-controls">
+        <button class="pixel-btn" onclick="prevPhoto()">◀ PREV</button>
+        <button class="pixel-btn" onclick="nextPhoto()">NEXT ▶</button>
+      </div>
+    </div>
+
+    <!-- Mail Pixel Button Popup -->
+    <div class="mail-overlay" id="mailOverlay">
+      <canvas
+        class="mail-btn"
+        id="pixelMail"
+        width="160"
+        height="120"
+        onclick="openLetter()"
+      ></canvas>
+      <p class="mail-label">♥ CLICK THE MAIL ♥</p>
+    </div>
+
+    <!-- Love Letter Content -->
+    <div class="letter-overlay" id="letterOverlay">
+      <div class="letter-paper">
+        <p class="letter-header">TO KORNCHULEE</p>
+        <p class="letter-body" id="letterBody">
+          แฮปปี้วาเลนไทน์นะไออ้วน ไม่อยากจะโม้ แต่ว่าเหมือนฝันเลยละ
+          ตั้งแต่มีพรีม ขอให้เราอยู่ด้วยกันนานๆ มีพรีม มีเติ้ลในทุกวัน
+          ไตเติ้ลอาจจะทำตัวไม่น่ารักไปบ้าง แต่ก็อยากให้รู้ว่า
+          เติ้ลจะเป็นคนที่ดีขึ้น จะได้อยู่กับพรีมนานๆเลย
+          ว่าแต่วันนี้ไปกินอะไรกันดี?...... รักนะ แบร่ :P
+        </p>
+        <p class="letter-signature">From Unknown</p>
+        <div class="letter-deco">@}~}~~~</div>
+      </div>
+      <button class="pixel-btn close-letter-btn" onclick="closeLetter()">
+        ♥ CLOSE ♥
+      </button>
+    </div>
+
+    <script>
+      // ========================================
+      // CONFIG: Add your photos and captions here!
+      // ========================================
+      const photos = [
+        {
+          // Replace with your actual photo URLs or local file paths
+          src: '/Users/attachatchannakorn/resNet-50/pics/pream.jpg',
+          caption: 'Satin Brother',
+        },
+        {
+          src: '/Users/attachatchannakorn/resNet-50/pics/happy_family.JPG',
+          caption: 'HAPPY FAMILY',
+        },
+        {
+          src: '/Users/attachatchannakorn/resNet-50/pics/IMG_6440.JPG',
+          caption: 'The two I love most',
+        },
+        // Add more photos:
+        // { src: "photo4.jpg", caption: "caption here" },
+      ];
+
+      let currentPhoto = 0;
+
+      // ========================================
+      // DODGE BUTTON LOGIC
+      // ========================================
+      let dodgeCount = 0;
+      const maxDodges = 10;
+      let dodgeCaught = false;
+      let dodgeCooldown = false; // prevent rapid-fire dodges
+
+      const dodgeMessages = [
+        'นึกว่าจะเก่ง',
+        'เอาใหม่',
+        'โบกี้ยังเร็วกว่านี้',
+        'จะแพ้แมวจริงๆหรอ?',
+        'เห้ย มีทรงนะ',
+        '555 ไม่มีโว้ย',
+        'รักนะ',
+        'ทำให้ได้สิอ้วน',
+        'อีกนิดเดียวพรีม สู้เค้า!!!!',
+        'โอเค ยอมแพ้',
+      ];
+
+      function dodgeButton() {
+        if (dodgeCaught) return;
+        if (dodgeCount >= maxDodges) return;
+        if (dodgeCooldown) return;
+
+        // Set cooldown to prevent multiple rapid triggers
+        dodgeCooldown = true;
+        setTimeout(() => {
+          dodgeCooldown = false;
+        }, 400);
+
+        const btn = document.getElementById('dodgeBtn');
+        const msg = document.getElementById('dodgeMessage');
+
+
+        // Safe margins so button stays fully visible
+        const margin = 40;
+        const btnW = btn.offsetWidth;
+        const btnH = btn.offsetHeight;
+        const maxX = window.innerWidth - btnW - margin;
+        const maxY = window.innerHeight - btnH - margin;
+        const newX = margin + Math.random() * (maxX - margin);
+        const newY = margin + Math.random() * (maxY - margin);
+
+        btn.style.left = newX + 'px';
+        btn.style.top = newY + 'px';
+        btn.style.transform = 'none';
+
+        // Show teasing message
+        msg.textContent = dodgeMessages[dodgeCount];
+
+        dodgeCount++;
+
+
+        // After 6 dodges, button surrenders
+        if (dodgeCount >= maxDodges) {
+          setTimeout(() => {
+            dodgeCaught = true;
+            // Center the button
+            const centerX = (window.innerWidth - btnW) / 2;
+            const centerY = (window.innerHeight - btnH) / 2;
+            btn.style.left = centerX + 'px';
+            btn.style.top = centerY + 'px';
+            btn.style.transform = 'none';
+            btn.classList.add('caught');
+            btn.textContent = 'คนชื่อพรีมห้ามกด';
+            msg.textContent = '~~~~~~~';
+
+          }, 500);
+        }
+      }
+
+      function onDodgeBtnClick() {
+        if (!dodgeCaught) {
+          // If not caught yet, dodge instead
+          dodgeButton();
+          return;
+        }
+        // Button caught! Show celebration
+        const dodgePhase = document.getElementById('dodgePhase');
+        dodgePhase.style.display = 'none';
+        document.getElementById('celebrateOverlay').classList.add('active');
+        spawnConfetti();
+      }
+
+      function spawnConfetti() {
+        const colors = [
+          '#ff4d6d',
+          '#ffd700',
+          '#ff6b9d',
+          '#27ae60',
+          '#ff85a1',
+          '#ffda44',
+          '#ff3370',
+          '#ffffff',
+        ];
+        for (let i = 0; i < 40; i++) {
+          setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor =
+              colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = 2 + Math.random() * 2 + 's';
+            confetti.style.animationDelay = '0s';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+          }, i * 80);
+        }
+      }
+
+      function closeCelebration() {
+        document.getElementById('celebrateOverlay').classList.remove('active');
+        const flowerPhase = document.getElementById('flowerPhase');
+        flowerPhase.classList.remove('flower-phase-hidden');
+        flowerPhase.classList.add('flower-phase-visible');
+      }
+
+      // Position dodge button initially in center
+      window.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('dodgeBtn');
+        const centerX = (window.innerWidth - btn.offsetWidth) / 2;
+        const centerY = (window.innerHeight - btn.offsetHeight) / 2;
+        btn.style.left = centerX + 'px';
+        btn.style.top = centerY + 'px';
+      });
+
+      // ========================================
+      // DRAW PIXEL FLOWER
+      // ========================================
+      function drawPixelFlower() {
+        const canvas = document.getElementById('pixelFlower');
+        const ctx = canvas.getContext('2d');
+        const px = 4; // pixel size
+
+        // Clear
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Stem
+        const stemColor = '#2ecc40';
+        const stemDark = '#1a8a28';
+        for (let y = 28; y < 48; y++) {
+          ctx.fillStyle = stemColor;
+          ctx.fillRect(19 * px, y * px, px, px);
+          ctx.fillRect(20 * px, y * px, px, px);
+          ctx.fillStyle = stemDark;
+          ctx.fillRect(21 * px, y * px, px, px);
+        }
+
+        // Leaves
+        const leafColor = '#27ae60';
+        const leafData = [
+          [16, 35],
+          [17, 34],
+          [18, 33],
+          [22, 33],
+          [23, 34],
+          [24, 35],
+          [15, 36],
+          [16, 36],
+          [17, 35],
+          [23, 35],
+          [24, 36],
+          [25, 36],
+        ];
+        leafData.forEach(([x, y]) => {
+          ctx.fillStyle = leafColor;
+          ctx.fillRect(x * px, y * px, px, px);
+        });
+
+        // Petals - Rose Pink
+        const petalColors = ['#ff4d6d', '#ff6b8a', '#ff85a1', '#ff3355'];
+
+        // Outer petals ring
+        const outerPetals = [
+          // Top petals
+          [18, 6],
+          [19, 6],
+          [20, 6],
+          [21, 6],
+          [22, 6],
+          [17, 7],
+          [18, 7],
+          [19, 7],
+          [20, 7],
+          [21, 7],
+          [22, 7],
+          [23, 7],
+          [16, 8],
+          [17, 8],
+          [23, 8],
+          [24, 8],
+          [15, 9],
+          [16, 9],
+          [24, 9],
+          [25, 9],
+          [15, 10],
+          [25, 10],
+          [14, 11],
+          [26, 11],
+          [14, 12],
+          [26, 12],
+          [14, 13],
+          [26, 13],
+          [14, 14],
+          [26, 14],
+          [15, 15],
+          [25, 15],
+          [15, 16],
+          [25, 16],
+          [16, 17],
+          [24, 17],
+          [16, 18],
+          [24, 18],
+          [17, 19],
+          [23, 19],
+          [17, 20],
+          [23, 20],
+          [18, 21],
+          [22, 21],
+          [18, 22],
+          [22, 22],
+          [19, 23],
+          [20, 23],
+          [21, 23],
+        ];
+
+        outerPetals.forEach(([x, y]) => {
+          ctx.fillStyle = petalColors[0];
+          ctx.fillRect(x * px, y * px, px, px);
+        });
+
+        // Inner fill
+        const innerPetals = [];
+        for (let y = 8; y <= 22; y++) {
+          for (let x = 15; x <= 25; x++) {
+            const isOuter = outerPetals.some(
+              ([ox, oy]) => ox === x && oy === y,
+            );
+            if (!isOuter) {
+              const isInBounds =
+                y >= 8 &&
+                y <= 22 &&
+                (x >= 17 || y >= 10) &&
+                (x <= 23 || y >= 10) &&
+                (x >= 16 || y >= 12) &&
+                (x <= 24 || y >= 12);
+              if (isInBounds) {
+                innerPetals.push([x, y]);
+              }
+            }
+          }
+        }
+
+        innerPetals.forEach(([x, y]) => {
+          const shade = (x + y) % 3;
+          ctx.fillStyle =
+            shade === 0
+              ? petalColors[1]
+              : shade === 1
+                ? petalColors[2]
+                : petalColors[0];
+          ctx.fillRect(x * px, y * px, px, px);
+        });
+
+        // Center (pollen)
+        const centerColor = '#ffd700';
+        const centerDark = '#ffaa00';
+        const centerPixels = [
+          [19, 12],
+          [20, 12],
+          [21, 12],
+          [18, 13],
+          [19, 13],
+          [20, 13],
+          [21, 13],
+          [22, 13],
+          [18, 14],
+          [19, 14],
+          [20, 14],
+          [21, 14],
+          [22, 14],
+          [19, 15],
+          [20, 15],
+          [21, 15],
+        ];
+
+        centerPixels.forEach(([x, y]) => {
+          ctx.fillStyle = (x + y) % 2 === 0 ? centerColor : centerDark;
+          ctx.fillRect(x * px, y * px, px, px);
+        });
+
+        // Sparkle animation pixels
+        const time = Date.now() / 300;
+        const sparkles = [
+          [17, 9],
+          [23, 9],
+          [20, 6],
+          [15, 14],
+          [25, 14],
+          [20, 22],
+        ];
+        sparkles.forEach(([x, y], i) => {
+          if (Math.sin(time + i * 1.5) > 0.3) {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillRect(x * px, y * px, px, px);
+          }
+        });
+      }
+
+      // Animate the flower sparkles
+      function animateFlower() {
+        drawPixelFlower();
+        requestAnimationFrame(animateFlower);
+      }
+      animateFlower();
+
+      // ========================================
+      // DRAW PIXEL MAIL
+      // ========================================
+      function drawPixelMail() {
+        const canvas = document.getElementById('pixelMail');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const px = 4;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Envelope body (cream/pink)
+        const bodyColor = '#ffebef';
+        const borderColor = '#cc3366';
+        const flapColor = '#ff8fab';
+        const sealColor = '#ff3370';
+
+        // Border
+        for (let x = 4; x <= 35; x++) {
+          for (let y = 6; y <= 24; y++) {
+            ctx.fillStyle = borderColor;
+            ctx.fillRect(x * px, y * px, px, px);
+          }
+        }
+
+        // Inner body
+        for (let x = 5; x <= 34; x++) {
+          for (let y = 7; y <= 23; y++) {
+            ctx.fillStyle = bodyColor;
+            ctx.fillRect(x * px, y * px, px, px);
+          }
+        }
+
+        // Envelope flap (triangle top)
+        const mid = 20;
+        for (let row = 0; row <= 7; row++) {
+          const leftX = 5 + row;
+          const rightX = 34 - row;
+          for (let x = leftX; x <= rightX; x++) {
+            // Border edge
+            if (x === leftX || x === rightX || row === 0) {
+              ctx.fillStyle = borderColor;
+            } else {
+              ctx.fillStyle = flapColor;
+            }
+            ctx.fillRect(x * px, (6 + row) * px, px, px);
+          }
+        }
+
+        // V-fold lines inside envelope
+        for (let i = 0; i <= 8; i++) {
+          ctx.fillStyle = '#e8b4c8';
+          ctx.fillRect((5 + i) * px, (23 - i) * px, px, px);
+          ctx.fillRect((34 - i) * px, (23 - i) * px, px, px);
+        }
+
+        // Heart seal in center
+        const heartPixels = [
+          [18, 15],
+          [19, 15],
+          [21, 15],
+          [22, 15],
+          [17, 16],
+          [18, 16],
+          [19, 16],
+          [20, 16],
+          [21, 16],
+          [22, 16],
+          [23, 16],
+          [17, 17],
+          [18, 17],
+          [19, 17],
+          [20, 17],
+          [21, 17],
+          [22, 17],
+          [23, 17],
+          [18, 18],
+          [19, 18],
+          [20, 18],
+          [21, 18],
+          [22, 18],
+          [19, 19],
+          [20, 19],
+          [21, 19],
+          [20, 20],
+        ];
+
+        heartPixels.forEach(([x, y]) => {
+          ctx.fillStyle = sealColor;
+          ctx.fillRect(x * px, y * px, px, px);
+        });
+
+        // Highlight on heart
+        ctx.fillStyle = '#ff6b9d';
+        ctx.fillRect(18 * px, 16 * px, px, px);
+        ctx.fillRect(18 * px, 17 * px, px, px);
+      }
+      drawPixelMail();
+
+      // ========================================
+      // STARS BACKGROUND
+      // ========================================
+      function drawStars() {
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        for (let i = 0; i < 80; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() > 0.7 ? 3 : 2,
+            speed: 0.5 + Math.random() * 1.5,
+            phase: Math.random() * Math.PI * 2,
+          });
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const time = Date.now() / 1000;
+          stars.forEach((star) => {
+            const alpha =
+              0.3 + 0.7 * Math.abs(Math.sin(time * star.speed + star.phase));
+            ctx.fillStyle = `rgba(255, 200, 220, ${alpha})`;
+            ctx.fillRect(
+              Math.floor(star.x / 2) * 2,
+              Math.floor(star.y / 2) * 2,
+              star.size,
+              star.size,
+            );
+          });
+          requestAnimationFrame(animate);
+        }
+        animate();
+      }
+      drawStars();
+      window.addEventListener('resize', drawStars);
+
+      // ========================================
+      // GROUND PIXELS
+      // ========================================
+      function drawGround() {
+        const canvas = document.getElementById('groundCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = 60;
+
+        const px = 4;
+        const cols = Math.ceil(canvas.width / px);
+
+        // Grass top edge (irregular)
+        for (let x = 0; x < cols; x++) {
+          const height =
+            6 + Math.floor(Math.sin(x * 0.8) * 2) + (x % 3 === 0 ? 2 : 0);
+          for (let y = 0; y < 15; y++) {
+            if (y < height) {
+              continue; // skip for jagged top
+            }
+            const shade =
+              y < height + 2
+                ? '#1a8a28'
+                : y < height + 5
+                  ? '#27ae60'
+                  : '#1a5a1a';
+            ctx.fillStyle = shade;
+            ctx.fillRect(x * px, y * px, px, px);
+          }
+        }
+
+        // Tiny flowers on ground
+        for (let i = 0; i < 12; i++) {
+          const fx = Math.floor(Math.random() * cols) * px;
+          const fy = 20 + Math.floor(Math.random() * 6) * px;
+          ctx.fillStyle = ['#ff6b9d', '#ffda44', '#ff85a1', '#ffffff'][
+            Math.floor(Math.random() * 4)
+          ];
+          ctx.fillRect(fx, fy, px, px);
+        }
+      }
+      drawGround();
+      window.addEventListener('resize', drawGround);
+
+      // ========================================
+      // FLOATING HEARTS
+      // ========================================
+      function createFloatingHearts() {
+        const container = document.getElementById('floatingHearts');
+        for (let i = 0; i < 15; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'pixel-heart';
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDelay = Math.random() * 6 + 's';
+          heart.style.animationDuration = 5 + Math.random() * 4 + 's';
+
+          // Create a tiny pixel heart via canvas
+          const c = document.createElement('canvas');
+          c.width = 12;
+          c.height = 12;
+          const cx = c.getContext('2d');
+          const color = ['#ff4d6d', '#ff6b9d', '#ff85a1', '#ff3370'][
+            Math.floor(Math.random() * 4)
+          ];
+          cx.fillStyle = color;
+          // Simple pixel heart pattern
+          [
+            [1, 0],
+            [2, 0],
+            [4, 0],
+            [5, 0],
+            [0, 1],
+            [1, 1],
+            [2, 1],
+            [3, 1],
+            [4, 1],
+            [5, 1],
+            [6, 1],
+            [0, 2],
+            [1, 2],
+            [2, 2],
+            [3, 2],
+            [4, 2],
+            [5, 2],
+            [6, 2],
+            [1, 3],
+            [2, 3],
+            [3, 3],
+            [4, 3],
+            [5, 3],
+            [2, 4],
+            [3, 4],
+            [4, 4],
+            [3, 5],
+          ].forEach(([x, y]) => cx.fillRect(x * 2 - 1, y * 2, 2, 2));
+
+          heart.style.background = `url(${c.toDataURL()}) no-repeat center/contain`;
+          container.appendChild(heart);
+        }
+      }
+      createFloatingHearts();
+
+      // ========================================
+      // PIXEL BURST EFFECT
+      // ========================================
+      function createPixelBurst(x, y) {
+        const container = document.createElement('div');
+        container.className = 'pixel-burst';
+        container.style.left = x + 'px';
+        container.style.top = y + 'px';
+        document.body.appendChild(container);
+
+        const colors = [
+          '#ff4d6d',
+          '#ff6b9d',
+          '#ffda44',
+          '#ff85a1',
+          '#ffffff',
+          '#ff3370',
+        ];
+        for (let i = 0; i < 20; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'pixel-particle';
+          const angle = ((Math.PI * 2) / 20) * i;
+          const dist = 40 + Math.random() * 60;
+          particle.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+          particle.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+          particle.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          container.appendChild(particle);
+        }
+
+        setTimeout(() => container.remove(), 1000);
+      }
+
+      // ========================================
+      // FLOWER CLICK → OPEN SLIDESHOW
+      // ========================================
+      function onFlowerClick(event) {
+        createPixelBurst(event.clientX, event.clientY);
+
+        // Small delay for the burst effect
+        setTimeout(() => {
+          currentPhoto = 0;
+          showPhoto();
+          document.getElementById('slideshowOverlay').classList.add('active');
+        }, 300);
+      }
+
+      // ========================================
+      // SLIDESHOW LOGIC
+      // ========================================
+      function showPhoto() {
+        const img = document.getElementById('slideImage');
+        const counter = document.getElementById('photoCounter');
+        const caption = document.getElementById('photoCaption');
+
+        img.src = photos[currentPhoto].src;
+        counter.textContent = `[ ${currentPhoto + 1} / ${photos.length} ]`;
+        caption.textContent = photos[currentPhoto].caption;
+
+        // Re-trigger animation
+        const frame = document.getElementById('photoFrame');
+        frame.style.animation = 'none';
+        frame.offsetHeight; // trigger reflow
+        frame.style.animation = 'photoAppear 0.4s ease';
+      }
+
+      function nextPhoto() {
+        if (currentPhoto < photos.length - 1) {
+          currentPhoto++;
+          showPhoto();
+        } else {
+          // Last photo reached → close slideshow, show mail!
+          document
+            .getElementById('slideshowOverlay')
+            .classList.remove('active');
+          setTimeout(() => {
+            document.getElementById('mailOverlay').classList.add('active');
+          }, 400);
+        }
+      }
+
+      function prevPhoto() {
+        if (currentPhoto > 0) {
+          currentPhoto--;
+          showPhoto();
+        }
+      }
+
+      // ========================================
+      // MAIL / LETTER LOGIC
+      // ========================================
+      function openLetter() {
+        document.getElementById('mailOverlay').classList.remove('active');
+        document.getElementById('letterOverlay').classList.add('active');
+        typeLetterEffect();
+      }
+
+      function typeLetterEffect() {
+        const body = document.getElementById('letterBody');
+        const fullText = body.textContent;
+        body.textContent = '';
+        let i = 0;
+
+        function type() {
+          if (i < fullText.length) {
+            body.textContent += fullText[i];
+            i++;
+            setTimeout(type, 40 + Math.random() * 30);
+          }
+        }
+        type();
+      }
+
+      function closeLetter() {
+        document.getElementById('letterOverlay').classList.remove('active');
+        // Redirect to YouTube song after closing the letter
+        // 👇 เปลี่ยน URL เป็นเพลงที่ต้องการ
+        setTimeout(() => {
+          window.location.href =
+            'https://www.youtube.com/watch?v=OhbtIPdqkqo&list=RDOhbtIPdqkqo&start_radio=1&pp=ygU24Lij4Lix4LiB4LmA4Lih4Li14Lii4LiX4Li14LmI4Liq4Li44LiU4LmD4LiZ4LmC4Lil4LiBoAcB';
+        }, 500);
+      }
+    </script>
+  </body>
+</html>
